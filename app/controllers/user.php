@@ -4,7 +4,7 @@ include "app/database/db.php";
 
 $errorMessage = '';
 
-// проверка на статуса админа
+// проверка на статус админа
 function userAuth($user){
     $_SESSION['id'] = $user['id'];
     $_SESSION['login'] = $user['username'];
