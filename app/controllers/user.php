@@ -11,7 +11,7 @@ function userAuth($user){
     $_SESSION['admin'] = $user['admin'];
 
     if($_SESSION['admin']){
-        header("location: http://localhost/blog/admin/admin.php");
+        header("location: http://localhost/blog/admin/posts/index.php");
     } else{
         header("location: http://localhost/blog/index.php");
     }

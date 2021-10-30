@@ -8,6 +8,7 @@ function showSelected($value){
     echo "<pre>";
     print_r($value);
     echo "</pre>";
+    exit();
 }
 
 // Проверка наличия ошибок при выполнении запроса к БД
@@ -155,3 +156,18 @@ function deleteData($table, $id){
 }
 
 //deleteData('user', 8);
+
+//выборка записей с автором  в админку
+
+function selectAuthor($table1, $table2)
+{
+    global $pdo;
+
+    $sql = "SELECT t1.id, t1.title, t1.img, t1.content, t1.status, t1.categories_id, t1.create_date, t2.username FROM $table1 AS t1 JOIN $table2 AS t2 ON t1.user_id = t2.id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+    return $query->fetchAll();
+
+}

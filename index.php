@@ -1,5 +1,8 @@
 <?php
-include 'app/database/db.php';
+
+include 'cfg.php';
+include 'app/controllers/categories.php';
+
 ?>
 
 <!doctype html>
@@ -96,12 +99,11 @@ include 'app/database/db.php';
             <div class="section topics">
                 <h4>Categories</h4>
                 <ul>
-                    <li><a href="#">Windows XP</a></li>
-                    <li><a href="#">Windows Vista</a></li>
-                    <li><a href="#">Windows 7</a></li>
-                    <li><a href="#">Windows 8</a></li>
-                    <li><a href="#">Windows 10</a></li>
-                    <li><a href="">Windows 11</a></li>
+                    <?php foreach ($categories as $key => $category): ?>
+                    <li>
+                        <a href="#"><?= $category['name'] ?></a>
+                    </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
 

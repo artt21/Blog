@@ -18,7 +18,7 @@
                             <?php echo $_SESSION['login']; ?>
                                 <ul>
                                     <?php if ($_SESSION['admin']): ?>
-                                    <li><a href = "log-in.php">Admin panel</a></li>
+                                    <li><a href = "admin\posts\index.php">Admin panel</a></li>
                                     <?php endif; ?>
                                     <li><a href = "logout.php">Log out</a></li>
                                 </ul>
