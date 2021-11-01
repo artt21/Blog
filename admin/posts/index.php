@@ -28,12 +28,12 @@ include "../../app/controllers/posts.php";
     <title>TechnoBlog</title>
 </head>
 <!-- HEADER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\header-admin.php") ?>
+<?php include("..\..\app\include\header-admin.php") ?>
 <br>
 
 <div class="container">
     <div class="row">
-        <?php include("C:\OpenServer\domains\localhost\blog\app\include\sidebar-admin.php"); ?>
+        <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
             <h3 style="margin-left: 270px">Posts Management</h3>
             <div class="button-row" style="min-height: 30px">
@@ -51,7 +51,7 @@ include "../../app/controllers/posts.php";
             <div class="row post">
                 <hr>
                 <div class="id col-1"><?= $key + 1 ?></div>
-                <div class="title col-3"><?= $post['title'] ?></div>
+                <div class="title col-3"><?= substr($post['title'], 0, 45) . "..." ?></div>
                 <div class="author col-2"><?= $post['username'] ?></div>
                 <div class="edit col-2"><a href="edit.php?id=<?=$post['id']; ?>">Edit</a></div>
                 <div class="delete col-2"><a href="edit.php?delete_id=<?=$post['id']; ?>">Delete</a></div>
@@ -62,12 +62,14 @@ include "../../app/controllers/posts.php";
                 <?php endif; ?>
             </div>
             <?php endforeach; ?>
+            <hr>
+            <br>
         </div>
     </div>
 </div>
 
 <!-- FOOTER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\\footer.php") ?>
+<?php include("..\..\app\include\\footer.php") ?>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

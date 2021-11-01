@@ -1,3 +1,13 @@
+<?php
+
+include "cfg.php";
+//include SITE_ROOT . "/app/database/db.php";
+include 'app/controllers/categories.php';
+$post = selectPostForSingle('posts', 'user', $_GET['post']);
+
+//showSelected($post);
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -26,20 +36,16 @@
 <div class ="content row">
         <!-- MAIN CONTENT-->
         <div class="main-content col-md-9 col-12">
-            <h2 align="center">How to install a new Windows for your PC</h2> <br>
+            <h2 align="center"><?= $post['title']; ?></h2> <br>
             <div class="single_post row">
                 <div class="img col-12">
-                    <img src="front/images/image_3.jpg" width="100" height="400" alt= "" class="img-thumbnail" align="middle">
+                    <img src="<?= BASE_URL . 'front/images/posts/' . $post['img'] ?>" width="100" height="400" alt= "" class="img-thumbnail" align="middle">
                     <br>
-                    <p align="center"><i>Author</i>
-                    <i>(October 12, 2021)</i></p>
+                    <p align="center"><b><i><?= $post['username'] ?></i></b>,
+                    <i><?= $post['create_date'] ?></i></p>
                 </div>
                 <div class="single_post_text col-12">
-                    <p>The following steps will walk you through the process of installing Windows 7 on a fresh computer.</p>
-                    <p>Installing Windows 7 is straightforward—if you’re doing a clean install, simply boot up your computer with the Windows 7 installation DVD inside the DVD drive and instruct your computer to boot from the DVD (you may need to press a key, such as F11 or F12, while the computer is starting to enter the boot selection screen).</p>
-                    <p>If you’re upgrading, simply boot into Windows Vista, insert the disc, and run the installer (if you are using Windows XP, see the previous sidebar ).</p>
-                    <p>When the installer has booted up, you will be greeted with the screen shown in Figure 1-2 (the upgrade screen is slightly different; you will have an option to check the compatibility of your system or start the installation).</p>
-                    <p>You will be asked to select the language to install, the time and currency format, and your keyboard type.</p>
+                   <?= $post['content']; ?>
                 </div>
             </div>
 
@@ -57,15 +63,13 @@
             <div class="section topics">
                 <h4>Categories</h4>
                 <ul>
-                    <li><a href="#">Windows XP</a></li>
-                    <li><a href="#">Windows Vista</a></li>
-                    <li><a href="#">Windows 7</a></li>
-                    <li><a href="#">Windows 8</a></li>
-                    <li><a href="#">Windows 10</a></li>
-                    <li><a href="#">Windows 11</a></li>
+                    <?php foreach ($categories as $key => $category): ?>
+                        <li>
+                            <a href="<?= BASE_URL . 'category.php?id=' . $category['id'] ?>"><?= $category['name'] ?></a>
+                        </li>
+                    <?php endforeach; ?>
                 </ul>
             </div>
-
         </div>
     </div>
     <br>

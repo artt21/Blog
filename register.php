@@ -31,7 +31,7 @@ include "app/controllers/user.php";
     <h3 align="center">Registration</h3>
     <form class="row justify-content-center" method="post" action="register.php">
         <div class="mb-3 col-12 col-md-4 err">
-            <p> <?php echo $errorMessage ?> </p>
+            <p> <?php include "app/include/errorinfo.php"; ?> </p>
         </div>
         <div class="w-100"></div>
         <div class="mb-3 col-12 col-md-4">

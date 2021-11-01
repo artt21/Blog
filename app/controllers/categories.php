@@ -2,7 +2,7 @@
 
 include SITE_ROOT . "/app/database/db.php";
 
-$errorMessage = '';
+$errorMessage = [];
 $categories = selectAll('categories');
 $id = '';
 $name = '';
@@ -16,11 +16,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-create'])) {
     $allowed_symbols = "/^[a-zA-Z0-9\-_]+$/";
 
     if($name === '' || $description === ''){   //проверка полей
-        $errorMessage = "Fill in all the fields!";
+        array_push($errorMessage, "Fill in all the fields!");
     } elseif(mb_strlen($name, 'UTF8') < 2){
-        $errorMessage = "Category name must have at least 2 symbols";
+        array_push($errorMessage,"Category name must have at least 2 symbols");
     } elseif (!(preg_match($allowed_symbols, $name) || !(preg_match($allowed_symbols, $description)))){
-        $errorMessage = "Fields have inappropriate symbols";
+        array_push($errorMessage, "Fields have inappropriate symbols");
     }
     else{
         $existence = selectOne('categories',['name' => $name]);
@@ -43,10 +43,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
     $id = $category['id'];
     $name = $category['name'];
     $description = $category['description'];
-//    $this->render('asdas.html.twig');
-//    $currentCategory = Category::find(1);
-//    $currentCategory->title = 'asdasd';
-//    $currentCategory->save();
 }
 
 
@@ -57,11 +53,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['topic-edit'])) {
     $allowed_symbols = "/^[a-zA-Z0-9\-_]+$/";
 
     if($name === '' || $description === ''){   //проверка полей
-        $errorMessage = "Fill in all the fields!";
+        array_push($errorMessage,"Fill in all the fields!");
     } elseif(mb_strlen($name, 'UTF8') < 2){
-        $errorMessage = "Category name must have at least 2 symbols";
+        array_push($errorMessage,"Category name must have at least 2 symbols");
     } elseif (!(preg_match($allowed_symbols, $name) || !(preg_match($allowed_symbols, $description)))){
-        $errorMessage = "Fields have inappropriate symbols";
+        array_push($errorMessage, "Fields have inappropriate symbols");
     }
     else{
         $existence = selectOne('categories',['name' => $name]);

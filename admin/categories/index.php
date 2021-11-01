@@ -29,12 +29,12 @@ include "../../app/controllers/categories.php";
     <title>TechnoBlog</title>
 </head>
 <!-- HEADER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\header-admin.php") ?>
+<?php include("..\..\app\include\header-admin.php") ?>
 <br>
 
 <div class="container">
     <div class="row">
-        <?php include("C:\OpenServer\domains\localhost\blog\app\include\sidebar-admin.php"); ?>
+        <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
             <h3 style="margin-left: 270px">Categories Management</h3>
             <div class="button-row" style="min-height: 30px">
@@ -62,7 +62,7 @@ include "../../app/controllers/categories.php";
 </div>
 
 <!-- FOOTER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\\footer.php") ?>
+<?php include("..\..\app\include\\footer.php") ?>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

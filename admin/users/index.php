@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+
+include "../../cfg.php";
+include "../../app/controllers/user.php";
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -23,12 +28,12 @@
     <title>TechnoBlog</title>
 </head>
 <!-- HEADER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\header-admin.php") ?>
+<?php include("..\..\app\include\header-admin.php") ?>
 <br>
 
 <div class="container">
     <div class="row">
-        <?php include("C:\OpenServer\domains\localhost\blog\app\include\sidebar-admin.php"); ?>
+        <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
             <h3 style="margin-left: 270px">Users Management</h3>
             <div class="button-row" style="min-height: 30px">
@@ -37,31 +42,33 @@
             </div>
             <div class="row title-table">
                 <div class="col-1">ID</div>
-                <div class="col-5">Login</div>
+                <div class="col-2">Login</div>
+                <div class="col-3">Email</div>
                 <div class="col-2">Status</div>
                 <div class="col-2">Edit</div>
                 <div class="col-2">Delete</div>
             </div>
+            <?php foreach ($users as $key => $user): ?>
             <div class="row post">
-                <div class="id col-1">1</div>
-                <div class="title col-5">Anonymous</div>
-                <div class="author col-2">Admin</div>
-                <div class="edit col-2"><a href="#">Edit</a></div>
-                <div class="delete col-2"><a href="#">Delete</a></div>
+                <hr>
+                <div class="col-1"><?= $user['id'];?></div>
+                <div class="col-2"><?= $user['username'];?></div>
+                <div class="col-3"><?= $user['email'];?></div>
+                <?php if ($user['admin'] == 1): ?>
+                <div class="col-2">Admin</div>
+                <?php else: ?>
+                <div class="col-2">User</div>
+                <?php endif; ?>
+                <div class="edit col-2"><a href="edit.php?edit_id=<?=$user['id']?>">Edit</a></div>
+                <div class="delete col-2"><a href="edit.php?delete_id=<?=$user['id']?>">Delete</a></div>
             </div>
-            <div class="row post">
-                <div class="id col-1">2</div>
-                <div class="title col-5">Anonymous1337</div>
-                <div class="author col-2">User</div>
-                <div class="edit col-2"><a href="#">Edit</a></div>
-                <div class="delete col-2"><a href="#">Delete</a></div>
-            </div>
+            <?php endforeach; ?>
         </div>
     </div>
 </div>
 
 <!-- FOOTER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\\footer.php") ?>
+<?php include("..\..\app\include\\footer.php") ?>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

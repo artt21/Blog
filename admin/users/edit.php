@@ -1,7 +1,7 @@
 <?php
 
 include "../../cfg.php";
-include "../../app/controllers/posts.php";
+include "../../app/controllers/user.php";
 
 ?>
 
@@ -35,45 +35,43 @@ include "../../app/controllers/posts.php";
     <div class="row">
         <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
-            <h3 style="margin-left: 270px">Editing a Post</h3>
+            <h3 style="margin-left: 270px">Creating a User</h3>
+            <?php include "../../app/include/errorinfo.php"; ?>
+            <div class="button-row" style="min-height: 30px">
+                <i><b><a href="create.php" class="col-2">Create</a></b></i> |
+                <i><b><a href="index.php" class="col-2">Manage</a></b></i>
+            </div>
             <div class="row add-post">
-                <!-- вывод массива с ошибками -->
-                <?php include "../../app/include/errorinfo.php"; ?>
                 <br>
-                <form action="edit.php" method="post" enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="<?= $id; ?>">
+                <form action="edit.php" method="post">
+                    <input name="id" type="hidden" value="<?=$id?>">
+                    <div class="w-100"></div>
                     <div class="col">
-                        <input value="<?= $post['title']; ?>" name="title" type="text" class="form-control" placeholder="Title" aria-label="post title">
+                        <label for="formGroupExampleInput" class="form-label">Username</label>
+                        <input name="login" value="<?=$username?>" type="text" class="form-control" id="formGroupExampleInput" placeholder="">
                     </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <label for="exampleInputEmail1" class="form-label">Email address</label>
+                        <input name="email" type="email" value="<?=$email?>" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="example@gmail.com">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <label for="exampleInputPassword1" class="form-label">New Password</label>
+                        <input name="pass-first" type="password" class="form-control" id="exampleInputPassword1">
+                    </div>
+                    <div class="w-100"></div>
+                    <div class="col">
+                        <label for="exampleInputPassword2" class="form-label">Confirm Password</label>
+                        <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2">
+                    </div>
+                    <br>
+                    <input type="checkbox" name="admin" value="1">
+                    <label>Admin</label>
                     <br>
                     <div class="col">
-                        <label for="content" class="form-label">Content</label>
-                        <textarea value="<?= $post['content']; ?>" name="content" class="form-control" id="content" rows="6"></textarea>
-                    </div>
-                    <br>
-                    <div class="input-group col">
-                        <input name="img" type="file" class="form-control" id="inputGroupFile02">
-                        <label class="input-group-text" for="inputGroupFile02">Upload</label>
-                    </div>
-                    <br>
-                    <select name="category" class="form-select" aria-label="Default select example">
-                        <?php foreach ($categories as $key => $category):  ?>
-                            <option value="<?= $category['id']?>"><?= $category['name'] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                    <br>
-                    <div class="col-6">
-                        <?php if (empty($publish) || $publish == 0) : ?>
-                            <input type="checkbox" name="publish">
-                            <label>Publish</label>
-                        <?php else: ?>
-                            <input type="checkbox" name="publish" checked>
-                            <label>Publish</label>
-                        <?php endif; ?>
-                    </div>
-                    <br>
-                    <div class="col-6">
-                        <button name="edit_post" class="btn btn-primary" type="submit">Save</button>
+                        <br>
+                        <button name="update-user" class="btn btn-primary" type="submit">Update</button>
                     </div>
                 </form>
             </div>

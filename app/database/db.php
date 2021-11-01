@@ -99,9 +99,6 @@ function insertData($table, $params){
 
     $sql = "INSERT INTO $table ($col) VALUES ($data)";
 
-//    showSelected($sql);
-//    exit();
-
     $query = $pdo->prepare($sql);
     $query->execute();
     checkErrors($query);
@@ -126,15 +123,12 @@ function updateData($table, $id, $params){
 
     $sql = "UPDATE $table SET $str WHERE id = $id";
 
-//    showSelected($sql);
-//    exit();
-
     $query = $pdo->prepare($sql);
     $query->execute();
     checkErrors($query);
 }
 
-//$parameter = [
+//$params = [
 //    'admin' => '1',
 //    'password' => '1337',
 //    'email' => 'anonimous@anon.net'
@@ -157,7 +151,8 @@ function deleteData($table, $id){
 
 //deleteData('user', 8);
 
-//выборка записей с автором  в админку
+
+//Выборка постов с автором в админку
 
 function selectAuthor($table1, $table2)
 {
@@ -169,5 +164,68 @@ function selectAuthor($table1, $table2)
     $query->execute();
     checkErrors($query);
     return $query->fetchAll();
+
+}
+
+//выборка постов с автором на главную
+
+function selectAuthorForMain($table1, $table2, $limit, $offset)
+{
+    global $pdo;
+
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.user_id = u.id WHERE p.status = 1 LIMIT $limit OFFSET $offset";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+    return $query->fetchAll();
+
+}
+
+//поиск по заголовкам и контенту
+function searchInTitleAndContent($text, $table1, $table2)
+{
+    global $pdo;
+    $text = trim(strip_tags(stripcslashes(htmlspecialchars($text))));
+
+    $sql = "SELECT p.*, u.username 
+            FROM $table1 AS p JOIN $table2 
+            AS u ON p.user_id = u.id 
+            WHERE p.status = 1 
+            AND p.title  
+            LIKE '%$text%' OR p.content LIKE '%$text%'";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+    return $query->fetchAll();
+
+}
+
+// выборка поста с автором для single-post
+function selectPostForSingle($table1, $table2, $id)
+{
+    global $pdo;
+
+    $sql = "SELECT p.*, u.username FROM $table1 AS p JOIN $table2 AS u ON p.user_id = u.id WHERE p.id = $id";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+    return $query->fetch();
+
+}
+
+//подсчет количества строк в таблице (для пагинации)
+function countRow($table){
+
+    global $pdo;
+
+    $sql = "SELECT COUNT(*) FROM $table WHERE status = 1";
+
+    $query = $pdo->prepare($sql);
+    $query->execute();
+    checkErrors($query);
+    return $query->fetchColumn();
 
 }

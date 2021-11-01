@@ -141,7 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['edit_post'])) {
 }
 
 
-//удаление статьи
+//удаление поста
 if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['delete_id'])) {
 
     $id = $_GET['delete_id'];

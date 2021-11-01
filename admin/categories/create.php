@@ -28,19 +28,19 @@ include "../../app/controllers/categories.php";
     <title>TechnoBlog</title>
 </head>
 <!-- HEADER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\header-admin.php") ?>
+<?php include("..\..\app\include\header-admin.php") ?>
 <br>
 
 <div class="container">
     <div class="row">
-        <?php include("C:\OpenServer\domains\localhost\blog\app\include\sidebar-admin.php"); ?>
+        <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
             <h3 style="margin-left: 270px">Adding a Category</h3>
             <div class="button-row" style="min-height: 30px">
                 <i><b><a href="create.php" class="col-2">Add</a></b></i> |
                 <i><b><a href="index.php" class="col-2">Manage</a></b></i>
             </div>
-            <p> <?php echo $errorMessage ?> </p>
+            <p> <?php include "../../app/include/errorinfo.php"; ?> </p>
             <div class="row add-post">
                 <br>
                 <form action="create.php" method="post">
@@ -63,7 +63,7 @@ include "../../app/controllers/categories.php";
 </div>
 <br>
 <!-- FOOTER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\\footer.php") ?>
+<?php include("..\..\app\include\\footer.php") ?>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

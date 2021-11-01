@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php
+
+include "../../cfg.php";
+include "../../app/controllers/user.php";
+
+?>
 
 <!doctype html>
 <html lang="en">
@@ -23,14 +28,15 @@
     <title>TechnoBlog</title>
 </head>
 <!-- HEADER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\header-admin.php") ?>
+<?php include("..\..\app\include\header-admin.php") ?>
 <br>
 
 <div class="container">
     <div class="row">
-        <?php include("C:\OpenServer\domains\localhost\blog\app\include\sidebar-admin.php"); ?>
+        <?php include("..\..\app\include\sidebar-admin.php"); ?>
         <div class="posts col-9">
             <h3 style="margin-left: 270px">Creating a User</h3>
+            <?php include "../../app/include/errorinfo.php"; ?>
             <div class="button-row" style="min-height: 30px">
                 <i><b><a href="create.php" class="col-2">Create</a></b></i> |
                 <i><b><a href="index.php" class="col-2">Manage</a></b></i>
@@ -59,14 +65,12 @@
                         <input name="pass-second" type="password" class="form-control" id="exampleInputPassword2">
                     </div>
                     <br>
-                    <select class="form-select" aria-label="Default select example">
-                        <option selected>Status</option>
-                        <option value="1">User</option>
-                        <option value="2">Admin</option>
-                    </select>
+                    <input type="checkbox" name="admin" value="1">
+                    <label>Admin</label>
                     <br>
                     <div class="col">
-                        <button class="btn btn-primary" type="submit">Save</button>
+                        <br>
+                        <button name="create-user" class="btn btn-primary" type="submit">Save</button>
                     </div>
                 </form>
             </div>
@@ -75,7 +79,7 @@
 </div>
 <br>
 <!-- FOOTER -->
-<?php include("C:\OpenServer\domains\localhost\blog\app\include\\footer.php") ?>
+<?php include("..\..\app\include\\footer.php") ?>
 
 <!-- Optional JavaScript; choose one of the two! -->
 

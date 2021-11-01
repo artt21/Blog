@@ -9,9 +9,9 @@
                 </div>
                 <nav class="col-8">
                     <ul>
-                        <li><a href="#">Main page</a></li>
-                        <li><a href="#">About us</a></li>
-                        <li><a href="#">Services</a></li>
+                        <li><a href="index.php">Main page</a></li>
+                        <li><a href="index.php">About us</a></li>
+                        <li><a href="index.php">Services</a></li>
                         <li>
                             <?php if (isset($_SESSION['id'])): ?>
                                 <p><b>Profile</b></p>

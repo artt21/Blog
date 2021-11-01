@@ -112,12 +112,11 @@ header ul li ul li{
     margin-bottom: 20px;
 }
 .topics{
+    padding: 0;
     position: absolute;
-    padding: 100px;
-    right: 66px;
-    top: 8em;
+    right: 165px;
+    top: 230px;
 }
-
 
 /*
 FOOTER

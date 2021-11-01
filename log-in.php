@@ -29,7 +29,7 @@ include "app/controllers/user.php";
 <div class="container register">
     <h3 align="center">Authorization</h3>
     <div class="mb-3 col-12 col-md-4 err">
-        <p> <?php echo $errorMessage ?> </p>
+        <p> <?php include "app/include/errorinfo.php"; ?> </p>
     </div>
     <div class="w-100"></div>
         <form class="row justify-content-center" method="post" action="log-in.php">
